@@ -7,7 +7,7 @@ export default class MotionMenu extends Component {
 
   static propTypes = {
     margin: PropTypes.number.isRequired,
-    type: PropTypes.oneOf(['horizontal', 'vertical', 'circle']).isRequired,
+    type: PropTypes.oneOf(['horizontal', 'vertical', 'circle', 'arc']).isRequired,
     wing: PropTypes.bool,
     x: PropTypes.number,
     y: PropTypes.number,
@@ -26,7 +26,7 @@ export default class MotionMenu extends Component {
     onClose: () => {},
     onOpen: () => {},
     bumpy: true,
-    openSpeed: 60,
+    openSpeed: 80,
     reverse: false,
   }
 
@@ -93,6 +93,9 @@ export default class MotionMenu extends Component {
     if (type === 'circle') {
       return x + (margin * Math.cos((Math.PI * 2 * i) / (children.length - 1)));
     }
+    if (type === 'arc') {
+      return x + (margin * Math.cos((Math.PI * 1.18 * i) / (children.length - 1)));
+    }
     return x;
   }
 
@@ -103,6 +106,9 @@ export default class MotionMenu extends Component {
     }
     if (type === 'circle') {
       return y + (margin * Math.sin((Math.PI * 2 * i) / (children.length - 1)));
+    }
+    if (type === 'arc') {
+      return y + (margin * Math.sin((Math.PI * 1.18 * i) / (children.length - 1)));
     }
     return y;
   }
